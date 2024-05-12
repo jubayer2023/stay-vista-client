@@ -8,13 +8,13 @@ const Categories = () => {
   const category = searchParams.get("category");
   return (
     <Container>
-      <div className="flex flex-row flex-wrap items-center justify-between overflow-x-auto py-4">
+      <div className="flex flex-row items-center justify-between overflow-x-auto py-4">
         {categories.map((item, index) => (
           <CategoryBox
             key={index}
-            label={item.label}
-            icon={item.icon}
-            selected={category === item.label}
+            label={item?.label}
+            icon={item?.icon}
+            selected={category === item?.label}
           />
         ))}
       </div>
