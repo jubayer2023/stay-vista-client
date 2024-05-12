@@ -3,21 +3,10 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import avatarImg from "../../../assets/images/placeholder.jpg";
-import { clearCookie } from "../../../api/auth";
-import toast from "react-hot-toast";
 
 const MenuDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, logOut } = useAuth();
-  const handleLogOut = async () => {
-    try {
-      await logOut();
-      await clearCookie();
-      toast.success("Logout Successfull");
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
 
   return (
     <div className="relative">
@@ -65,7 +54,7 @@ const MenuDropdown = () => {
                   Dashboard
                 </Link>
                 <div
-                  onClick={handleLogOut}
+                  onClick={logOut}
                   className="px-4 py-3 hover:bg-neutral-300 transition font-semibold hover:cursor-pointer"
                 >
                   Log out

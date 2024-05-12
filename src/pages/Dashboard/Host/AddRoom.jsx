@@ -94,7 +94,7 @@ const AddRoom = () => {
   return (
     <div>
       <Helmet>
-        <title>stayVista | addRoom</title>
+        <title>Dashboard | addRoom</title>
       </Helmet>
       {/* form */}
       <AddRoomForm

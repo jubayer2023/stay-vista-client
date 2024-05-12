@@ -16,6 +16,12 @@ export const saveUser = async (user) => {
 };
 
 
+// get roles of user
+export const getRole = async (email) => {
+    const { data } = await axiosSecure.get(`/user/${email}`)
+    return data.role;
+};
+
 export const setCookie = async (user) => {
     const userEmail = {
         email: user?.email
