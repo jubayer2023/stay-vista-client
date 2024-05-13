@@ -2,19 +2,43 @@ import { formatDistance } from "date-fns";
 import Button from "../Button/Button";
 import DatePicker from "./DatePicker";
 import { useState } from "react";
+import BookingModal from "../Modal/BookingModal";
+import useAuth from "../../hooks/useAuth";
 
 const RoomReservation = ({ room }) => {
+  const { user } = useAuth();
+  const [isOpen, setIsOpen] = useState(false);
   const totalDays = parseInt(
-    formatDistance(new Date(room?.to), new Date(room?.from)).split(" ")[0]
+    formatDistance(new Date(room?.to), new Date(room?.from))
   );
 
   const totalPrice = totalDays * room?.price;
-  // console.log(totalPrice)
+  // console.log(totalPice)
 
   const [value, setValue] = useState({
     startDate: new Date(room?.from),
     endDate: new Date(room?.to),
     key: "selection",
+  });
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
+  const [bookingInfo, setBookingInfo] = useState({
+    guest: {
+      name: user?.displayName,
+      email: user?.email,
+      image: user?.photoURL,
+    },
+    host: room?.host?.email,
+    location: room?.location,
+    price: room?.price,
+    to: value?.endDate,
+    from: value?.startDate,
+    title: room?.title,
+    roomId: room?._id,
+    image: room?.image,
   });
 
   return (
@@ -28,14 +52,23 @@ const RoomReservation = ({ room }) => {
         <DatePicker value={value}></DatePicker>
       </div>
       <hr />
-      <div className="p-4">
-        <Button label={"Reserve"}></Button>
+      <div onClick={() => setIsOpen(true)} className="p-4">
+        <Button
+          disabled={room?.host?.email === user?.email || room?.booked}
+          label={"Reserve"}
+        ></Button>
       </div>
       <hr />
       <div className="p-4 flex items-center justify-between text-lg font-bold">
         <h3>Total</h3>
         <h3>${totalPrice}</h3>
       </div>
+      {/* Booking modal */}
+      <BookingModal
+        closeModal={closeModal}
+        isOpen={isOpen}
+        bookingInfo={bookingInfo}
+      ></BookingModal>
     </div>
   );
 };

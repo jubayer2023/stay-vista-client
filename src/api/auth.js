@@ -36,3 +36,9 @@ export const clearCookie = async () => {
     const { data } = await axiosSecure.get('/logout');
     return data;
 };
+
+
+export const getAllusers = async () => {
+    const { data } = await axiosSecure.get('/users');
+    return data;
+}
