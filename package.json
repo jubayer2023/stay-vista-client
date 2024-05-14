@@ -17,6 +17,7 @@
     "axios": "^1.6.1",
     "date-fns": "^2.30.0",
     "firebase": "^10.11.1",
+    "number-to-words": "^1.2.4",
     "query-string": "^8.2.0",
     "react": "^18.2.0",
     "react-date-range": "^1.4.0",

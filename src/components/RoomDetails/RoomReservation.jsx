@@ -33,7 +33,7 @@ const RoomReservation = ({ room }) => {
     },
     host: room?.host?.email,
     location: room?.location,
-    price: room?.price,
+    price: totalPrice,
     to: value?.endDate,
     from: value?.startDate,
     title: room?.title,

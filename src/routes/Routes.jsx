@@ -16,6 +16,8 @@ import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 import Profile from "../pages/Dashboard/Common/Profile";
 import MyBookings from "../pages/Dashboard/Guest/MyBookings";
 import ManageBookings from "../pages/Dashboard/Host/ManageBookings";
+import GuestStatistics from "../pages/Dashboard/Guest/GuestStatistics";
+import Statistic from "../pages/Dashboard/Statistic";
 
 export const router = createBrowserRouter([
   {
@@ -49,6 +51,10 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
+        path: "/dashboard",
+        element: <Statistic></Statistic>,
+      },
+      {
         path: "profile",
         element: <Profile></Profile>,
       },
@@ -74,6 +80,14 @@ export const router = createBrowserRouter([
           </HostRoute>
         ),
       },
+      {
+        path: "manage-bookings",
+        element: (
+          <HostRoute>
+            <ManageBookings></ManageBookings>
+          </HostRoute>
+        ),
+      },
       // admin routes
       {
         path: "manage-users",
@@ -81,15 +95,6 @@ export const router = createBrowserRouter([
           <AdminRoute>
             <ManageUsers></ManageUsers>
           </AdminRoute>
-        ),
-      },
-      // host routes
-      {
-        path: "manage-bookings",
-        element: (
-          <HostRoute>
-            <ManageBookings></ManageBookings>
-          </HostRoute>
         ),
       },
     ],

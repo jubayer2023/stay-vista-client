@@ -15,17 +15,20 @@ import useRole from "../../../hooks/useRole";
 import AdminMenu from "../Menu/AdminMenu";
 import HostMenu from "../Menu/HostMenu";
 import GuestMenu from "../Menu/GuestMenu";
+import useToggleRole from "../../../hooks/useToggleRole";
 
 const Sidebar = () => {
-  const [toggle, setToggle] = useState(false);
+  // const [toggle, setToggle] = useState(false);
   const [isActive, setActive] = useState(false);
   const { user, logOut } = useAuth();
   const [role] = useRole();
-  console.log(toggle);
+  // console.log(role);
+  const { toggle, handleToggleRole } = useToggleRole();
+  // console.log(toggle);
 
   //   For guest/host menu item toggle button
   const toggleHandler = (event) => {
-    setToggle(event.target.checked);
+    handleToggleRole(event);
   };
   // Sidebar Responsive Handler
   const handleToggle = () => {
