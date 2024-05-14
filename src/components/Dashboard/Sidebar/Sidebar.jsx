@@ -12,9 +12,9 @@ import { BsGraphUp } from "react-icons/bs";
 
 import useAuth from "../../../hooks/useAuth";
 import useRole from "../../../hooks/useRole";
-import HostMenu from "./HostMenu";
-import AdminMenu from "./AdminMenu";
-import Guestmenu from "./Guestmenu";
+import AdminMenu from "../Menu/AdminMenu";
+import HostMenu from "../Menu/HostMenu";
+import GuestMenu from "../Menu/GuestMenu";
 
 const Sidebar = () => {
   const [toggle, setToggle] = useState(false);
@@ -79,9 +79,9 @@ const Sidebar = () => {
               {/*Admin Menu Items */}
               {role === "admin" && <AdminMenu />}
               {/*Host Menu Items */}
-              {role === "host" && (toggle ? <HostMenu /> : <Guestmenu />)}
+              {role === "host" && (toggle ? <HostMenu /> : <GuestMenu />)}
               {/*Guest Menu Items */}
-              {role === "guest" && <Guestmenu />}
+              {role === "guest" && <GuestMenu />}
             </nav>
           </div>
         </div>
